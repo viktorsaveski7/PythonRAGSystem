@@ -43,6 +43,7 @@ class QueryResponse(BaseModel):
     question: str
     chunks_retrieved: int
     score_threshold: float
+    search_method: str
     answer: str
 
 
@@ -119,6 +120,7 @@ def query(request: QueryRequest):
         question=request.question,
         chunks_retrieved=len(chunks),
         score_threshold=request.score_threshold,
+        search_method="hybrid (BM25 + semantic, merged with RRF)",
         answer=answer,
     )
 
